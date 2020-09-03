@@ -61,6 +61,16 @@
 7. `eslint`格式化的局限，eslint 无法格式化以`.json`、`.css`、`.less`等后缀的文件
    > 事实上格式化的工作之前一直使用`prettier`来做的，现在只是可以用`eslint`替代之前`prettier`对于`.ts`、`.tsx`、`.js`、`.jsx`的工作。
 
+### 安装 prettier
+
+> 毫无意外的 `prettier`和`eslint`冲突了
+
+> `eslint`无法对尾随逗号进行格式化(Trailing Commas)
+
+安装 prettier `yarn add prettier -D`
+并且需要用`prettier`官方提供的 lint 整合工具覆盖 eslint 配置，避免冲突
+[`prettier`与 Linters 集成](https://prettier.io/docs/en/integrating-with-linters.html)
+
 ## 启动项目
 
 1. 运行 NPM 脚本 `start`
@@ -74,8 +84,20 @@
    └── eslint@6.8.0
    ```
 
+## 初始化 tsconfig.json
+
+`tsconfig.json`文件是项目自动生成了，作用是作为 tsc 编译器的配置。在`VS Code`中可以通过`tsconfig.json`文件配置路径别名，可以使用`@`作为绝对路径替代`src`,例如`import App from '@/App'`。
+
+## 问题
+
+### eslint 无法格式化 interface
+
+解决办法：还是用 `prettier`替换`eslint`的格式化功能，毕竟`prettier`在格式化上更加专业。
+
 ## 参考
 
 - [Eslint 格式化](https://eslint.org/docs/user-guide/formatters/#eslint-formatters)
 - [Eslint require-jsdoc](https://eslint.org/docs/rules/require-jsdoc)
 - [VS Code 用户界面](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette)
+- [让 `VS Code` 识别路径别名](https://code.visualstudio.com/docs/languages/jsconfig#_using-webpack-aliases)
+- [`prettier`与 Linters 集成](https://prettier.io/docs/en/integrating-with-linters.html)
