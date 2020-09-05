@@ -48,19 +48,12 @@ export default class App extends Component {
      * 先前的结论：不应该在render函数/组件函数中定义render函数，内部定义的组件不会被react缓存
      * 更近的结论：在父render函数中定义的render函数会被认定为一个新组件，每次调用父render都会得到一个新render组件。寻找答案的方向应该是在react的diff算法 即 <Demo2></Demo2> 不同于 Demo2()
      */
-    const Demo2 = () => (
-      <div className="wrap">
-        wrap{count}
-        <Demo onClick={this.addOne} name="app-demo">
-          a {count}
-        </Demo>
-      </div>
+    const Demo2 = (
+      <Demo onClick={this.addOne} name="app-demo">
+        a {count}
+      </Demo>
     )
-    return (
-      <div>
-        <Demo2></Demo2>
-      </div>
-    )
+    return <div>{Demo2}</div>
     // return <div>{Demo2()}</div>
   }
 }

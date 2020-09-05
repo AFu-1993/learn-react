@@ -9,7 +9,7 @@ export default class Demo extends Component<any, any> {
   }
   componentDidMount() {
     console.log('Demo componentDidMount')
-    // this.handleClick()
+    this.handleClick()
   }
   render() {
     const { count, name } = this.props
