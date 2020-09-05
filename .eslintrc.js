@@ -17,6 +17,7 @@ module.exports = {
     'require-jsdoc': [0] /* 很棒的规则，但似乎不适合ts项目 */,
     semi: [2, 'never'],
     indent: ['error', 2],
+    'no-invalid-this': [0],
   },
   settings: {
     react: {
