@@ -1,10 +1,29 @@
-import React from 'react'
-interface Props {
-  name: string
+import React, { Component } from 'react'
+
+export default class Demo extends Component<any, any> {
+  handleClick = () => {
+    console.log('Demo button Click')
+
+    const { onClick } = this.props
+    onClick && onClick()
+  }
+  componentDidMount() {
+    console.log('Demo componentDidMount')
+    this.handleClick()
+  }
+  render() {
+    const { count, name } = this.props
+    return (
+      <div>
+        <div>
+          <h2>
+            {name} {count}
+          </h2>
+          <button onClick={this.handleClick}>click</button>
+        </div>
+      </div>
+    )
+  }
 }
 
-const Demo: React.FC<Props> = (props: Props) => {
-  return <div>{props.name}</div>
-}
 
-export default Demo
