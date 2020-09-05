@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./node_modules/react/umd/react.development.js"></script>
+    <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
+    <div id="root"></div>
+    <script>
+      class Hello extends React.Component {
+        render() {
+          return React.createElement('h1', null, `Hello ${this.props.toWhat}`)
+        }
+      }
+
+      ReactDOM.render(
+        React.createElement(Hello, { toWhat: 'World' }, null),
+        document.getElementById('root')
+      )
+    </script>
+    <script>
+        /**
+         * 
+         * TODO:1 高等级
+         * TODO:2 中等级
+         * TODO:3 低等级
+         * 在umd包中标明
+         **/
+
+         
+    </script>
+  </body>
+</html>

@@ -1,26 +1,35 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
-import Demo from './components/Demo/index'
+import ListWarp from './components/ListWarp'
 
+const orderList = fillArray([], 30)
+function fillArray(arr: Array<any>, length: number) {
+  const originLength = arr.length
+  if (originLength > length) {
+    return arr
+  } else {
+    for (let i = originLength; i < length; i++) {
+      arr[i] = i + 1
+    }
+    return arr
+  }
+}
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        {/* <Demo name="huang"></Demo> */}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <header>header</header>
+      <ListWarp className="scroll-wrap" /* orderList={orderList} */>
+        <ul>
+          {orderList.map((item, index) => {
+            return (
+              <li className="scroll-item" key={index}>
+                {index}
+              </li>
+            )
+          })}
+        </ul>
+      </ListWarp>
+      <footer>footer</footer>
     </div>
   )
 }
