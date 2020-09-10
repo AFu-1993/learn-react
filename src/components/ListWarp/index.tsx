@@ -8,8 +8,11 @@ export default class ListWrap extends Component<any, any> {
     const bs = new BScroll(document.querySelector('.' + className) as any, {
       scrollY: true,
       click: true,
-      probeType: 3,
+      // probeType: 3,
       pullDownRefresh: true,
+      directionLockThreshold:3,
+      bounce:true,
+      useTransition:false,
     })
     const TOP = 40
     bs.on('scroll', this.scrollHandler)

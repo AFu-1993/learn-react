@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import ListWarp from './components/ListWarp'
 
-const orderList = fillArray([], 30)
+const orderList = fillArray([], 10)
 function fillArray(arr: Array<any>, length: number) {
   const originLength = arr.length
   if (originLength > length) {
@@ -18,17 +18,19 @@ function App() {
   return (
     <div className="App">
       <header>header</header>
-      <ListWarp className="scroll-wrap" /* orderList={orderList} */>
-        <ul>
-          {orderList.map((item, index) => {
-            return (
-              <li className="scroll-item" key={index}>
-                {index}
-              </li>
-            )
-          })}
-        </ul>
-      </ListWarp>
+      <div className="body">
+        <ListWarp className="scroll-wrap" /* orderList={orderList} */>
+          <ul>
+            {orderList.map((item, index) => {
+              return (
+                <li className="scroll-item" key={index}>
+                  {index}
+                </li>
+              )
+            })}
+          </ul>
+        </ListWarp>
+      </div>
       <footer>footer</footer>
     </div>
   )
