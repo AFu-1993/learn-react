@@ -1,70 +1,44 @@
-import React, { Component, useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import ListWarp from './components/ListWarp'
-import Demo from './components/Demo'
+import React, { useEffect, useState, useCallback } from 'react'
 
-export default class App extends Component {
-  state = {
-    count: 1,
-  }
-  addOne = () => {
-    console.log('addOne')
-
-    setTimeout(() => {
-      this.setState({
-        count: this.state.count + 1,
-      })
-    }, 0)
-  }
-  renderDemo() {
-    return this.renderDemowrap()
-  }
-  renderDemowrap() {
-    const { count } = this.state
-    return (
-      <div className="wrap">
-        <Demo onClick={this.addOne} name="app-demo">
-          {count}
-        </Demo>
-      </div>
-    )
-  }
-
-  render() {
-    const { count } = this.state
-
-    const Demo2 = (
-      <Demo onClick={this.addOne} name="app-demo">
-        a {count}
-      </Demo>
-    )
-    return <div><Demo2></Demo2></div>
-    // return <div>{Demo2()}</div>
-  }
+let setName_copy: any
+function Child({ name, onClick, output }: any) {
+  console.log('Child eval')
+  useEffect(() => {
+    console.log('child effect run')
+    output()
+    return () => {
+      console.log('child effect run:cleanup')
+    }
+  }, [output])
+  return <div onClick={onClick}>child:{name}</div>
 }
 
-/* function App() {
-  const [count, setCount] = useState(0)
-  const addOne = () => {
-    console.log('addOne')
-
-    setTimeout(() => {
-      setCount(count + 1)
-    }, 0)
+function Child2() {
+  console.log('Child2 eval')
+  const [name, setName] = useState('Child2')
+  const onClick = () => {
+    setName('Child2' + parseInt(String(Math.random() * 100), 16))
+    setName_copy('app' + parseInt(String(Math.random() * 100), 16))
   }
-  const Demo2 = (
-    <div className="wrap">
-      <Demo onClick={addOne} name="app-demo">
-        {count}
-      </Demo>
-    </div>
-  )
+  return <div onClick={onClick}>child:{name}</div>
+}
+
+export default function App() {
+  console.log('App eval')
+
+  const [name, setName] = useState('god')
+  const onClick = () => {
+    setName(name + Math.floor(Math.random() * 100))
+  }
+  setName_copy = setName
+  const output = useCallback(() => {
+    console.log(name)
+  }, [name])
   return (
     <div>
-      <div>{Demo2}</div>
+      app
+      <Child name={name} output={output} onClick={onClick}></Child>
+      <Child2></Child2>
     </div>
   )
 }
-
-export default App */

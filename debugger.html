@@ -22,102 +22,50 @@
       )
     </script> -->
     <script>
-      class Demo extends React.Component {
-        handleClick = () => {
-          console.log('Demo button Click')
-          const { onClick } = this.props
-          onClick && onClick()
+      function _defineProperty(obj, key, value) {
+        if (key in obj) {
+          Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true,
+          })
+        } else {
+          obj[key] = value
         }
-
-        componentDidMount() {
-          console.log('Demo componentDidMount')
-          this.handleClick()
-        }
-
-        render() {
-          const { count, name } = this.props
-          return /*#__PURE__*/ React.createElement(
-            'div',
-            null,
-            /*#__PURE__*/ React.createElement(
-              'div',
-              null,
-              /*#__PURE__*/ React.createElement('h2', null, name, ' ', count),
-              /*#__PURE__*/ React.createElement(
-                'button',
-                {
-                  onClick: this.handleClick,
-                },
-                'click'
-              )
-            )
-          )
-        }
+        return obj
       }
 
       class App extends React.Component {
-        state = {
-          count: 1,
-        }
-        addOne = () => {
-          console.log('addOne')
-          setTimeout(() => {
+        constructor(props) {
+          super(props)
+
+          _defineProperty(this, 'state', {
+            str: 'hbs',
+          })
+
+          _defineProperty(this, 'handleInput', (a, b) => {
+            console.log(a.target.value, b)
             this.setState({
-              count: this.state.count + 1,
+              str: a.target.value,
             })
-          }, 0)
-        }
-
-        renderDemo() {
-          return this.renderDemowrap()
-        }
-
-        renderDemowrap() {
-          const { count } = this.state
-          return /*#__PURE__*/ React.createElement(
-            'div',
-            {
-              className: 'wrap',
-            },
-            /*#__PURE__*/ React.createElement(
-              Demo,
-              {
-                onClick: this.addOne,
-                name: 'app-demo',
-              },
-              count
-            )
-          )
+          })
         }
 
         render() {
-          const { count } = this.state
-        //   debugger
-
-          const Demo2 = () =>
-            /*#__PURE__*/ React.createElement(
-              Demo,
-              {
-                onClick: this.addOne,
-                name: 'app-demo',
-              },
-              'a ',
-              count
-            )
-
           return /*#__PURE__*/ React.createElement(
             'div',
             null,
-            /*#__PURE__*/ React.createElement(Demo2, null)
-          ) // return <div>{Demo2()}</div>
+            /*#__PURE__*/ React.createElement('h2', null, this.state.str),
+            /*#__PURE__*/ React.createElement('input', {
+              onChange: this.handleInput,
+              value: this.state.str,
+            })
+          )
         }
       }
-      const reactApp = React.createElement(App, null)
-      console.log(reactApp);
-      ReactDOM.render(
-        reactApp,
-        document.getElementById('root')
-      )
+      const root = React.createElement(App, null)
+      ReactDOM.render(root, document.getElementById('root'))
     </script>
     <script>
       /**

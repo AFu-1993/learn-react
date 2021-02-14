@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      #d1 {
+        width: 100px;
+        height: 100px;
+        background-color: #eee;
+      }
+    </style>
+    <div id="d1"></div>
+    <script>
+      function work() {
+        const d1 = document.querySelector('#d1')
+        console.log(Date.now())
+        d1.offsetWidth
+        requestAnimationFrame(function () {
+          console.log(Date.now())
+        })
+      }
+      setTimeout(work, 3000)
+    </script>
+  </body>
+</html>
